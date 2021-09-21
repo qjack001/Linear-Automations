@@ -1,0 +1,21 @@
+{
+	"name": "linear-bot",
+	"version": "1.0.0",
+	"description": "Some simple routines automating Linear",
+	"author": "Jack Guinane",
+	"license": "MIT",
+	"scripts": {
+		"dev": "tsc && node main.js",
+		"automate": "tsc && node main.js"
+	},
+	"devDependencies": {
+		"eslint-config-goodbyte-styleguide": "^0.0.7",
+		"textlint-rule-preset-goodbyte-styleguide": "^0.0.5"
+	},
+	"dependencies": {
+		"@linear/sdk": "^1.20.0",
+		"@types/node": "^16.9.4",
+		"dotenv": "^10.0.0",
+		"typescript": "^4.4.3"
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"compilerOptions": 
+	{
+		"sourceMap": true,
+		"target": "es2021",
+		"module": "CommonJS",
+		"moduleResolution": "node"
+	},
+	"lib": [ "es2021" ]
+}
