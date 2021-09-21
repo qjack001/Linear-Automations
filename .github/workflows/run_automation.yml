@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v1
       
-      - name: Setup Node
+      - name: Set up Node
         uses: actions/setup-node@v1
         with:
           node-version: 10

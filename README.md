@@ -25,10 +25,10 @@ git clone https://github.com/qjack001/Linear-Automations.git
 npm install
 ```
 
-Add your Linear API key to your environment. For example, if working locally:
+Add your Linear API key to your environment. For example:
 
 ```env
-# .env file at the root
+# .env file at the root of the repo
 API_KEY=lin_api_1234567890
 ```
 
@@ -42,4 +42,5 @@ npm run automate
 
 ### Operational notes
 
-<!-- Todo -->
+This project is set up to run every day at 6 AM Pacific (13:00 UTC), via a [cron-scheduled Github action](.github/workflows/run_automation.yml). For this to work, your Linear API key must be set in the repository’s **Settings > Secrets** as `API_KEY`.
+
