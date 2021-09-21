@@ -1,5 +1,7 @@
 # Linear Automations
 
+[ [Automation](#automation) ] [ [Local development](#local-development) ] [ [Operational notes](#operational-notes) ]
+
 Simple workflows for automating [Linear](https://linear.app/) workspaces.
 
 ### Automation
