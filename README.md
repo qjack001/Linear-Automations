@@ -27,8 +27,8 @@ npm install
 
 Add your Linear API key to your environment. For example, if working locally:
 
-```bash
-// .env file at the root
+```env
+# .env file at the root
 API_KEY=lin_api_1234567890
 ```
 
