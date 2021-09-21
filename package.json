@@ -5,8 +5,8 @@
 	"author": "Jack Guinane",
 	"license": "MIT",
 	"scripts": {
-		"dev": "tsc && node main.js",
-		"automate": "tsc && node main.js"
+		"dev": "tsc && node src/main.js",
+		"automate": "tsc && node src/main.js"
 	},
 	"devDependencies": {
 		"eslint-config-goodbyte-styleguide": "^0.0.7",
