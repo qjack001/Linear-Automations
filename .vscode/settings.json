@@ -3,12 +3,19 @@
 	"css.validate": false,
 	"less.validate": false,
 	"scss.validate": false,
-	"eslint.validate": ["vue", "javascript"],
 	"eslint.packageManager": "npm",
+	"eslint.validate": [ "vue", "javascript" ],
+	"textlint.autoFixOnSave": true,
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true,
 		"source.fixAll.stylelint": true
 	},
-	"stylelint.enable": true,
-	"textlint.autoFixOnSave": true
+	"files.exclude": {
+		"node_modules/": true,
+		"**/*.js": true,
+		"**/*.js.map": true,
+		".eslintrc": true,
+		".textlintrc": true,
+		"package-lock.json": true
+	}
 }
