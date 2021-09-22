@@ -3,11 +3,10 @@ import { Time } from './time'
 import { env } from 'process';
 
 require('dotenv').config()
-let auto = new LinearAutomation(env.API_KEY)
+let auto = new LinearAutomation(env.API_KEY, 'Jack')
 
+auto.moveIssues({ from: 'Todo',   to: 'Triage',  after: Time.ofDays(2) })
+auto.moveIssues({ from: 'Triage', to: 'Backlog', after: Time.ofWeeks(1) })
 
-auto.moveIssues({ from: 'Todo', to: 'Triage', after: Time.ofDays(2) })
-	.then(() => console.log('Done moving old Todo items to Triage!'))
-
-auto.moveIssues({ from: 'Triage', to: 'Backlog', after: Time.ofDays(7) })
-	.then(() => console.log('Done moving old Triage items to Backlog!'))
+auto.reoccurringIssue('Brush your teeth', { to: 'Todo',   schedule: Time.EVERY_DAY })
+auto.reoccurringIssue('Wash the dishes',  { to: 'Triage', schedule: Time.EVERY_WEDNESDAY })
