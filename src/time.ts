@@ -12,6 +12,8 @@ export type Duration = {
 	equals: (other: Duration) => boolean
 }
 
+export type Schedule = (today: Date) => boolean
+
 export class Time {
 	
 	static now(): Date {
@@ -222,4 +224,113 @@ export class Time {
 		}
 		return duration
 	}
+
+	static isWeekday(date: Date): boolean {
+		return (0 < date.getDay() && date.getDay() < 6)
+	}
+
+	static isSunday(date: Date): boolean {
+		return (date.getDay() == 0)
+	}
+
+	static isMonday(date: Date): boolean {
+		return (date.getDay() == 1)
+	}
+
+	static isTuesday(date: Date): boolean {
+		return (date.getDay() == 2)
+	}
+
+	static isWednesday(date: Date): boolean {
+		return (date.getDay() == 3)
+	}
+
+	static isThursday(date: Date): boolean {
+		return (date.getDay() == 4)
+	}
+
+	static isFriday(date: Date): boolean {
+		return (date.getDay() == 5)
+	}
+
+	static isSaturday(date: Date): boolean {
+		return (date.getDay() == 6)
+	}
+
+	static isFirstWeekOfMonth(date: Date): boolean {
+		return (date.getDate() < 8)
+	}
+
+	static isSecondWeekOfMonth(date: Date): boolean {
+		return (7 < date.getDate() && date.getDate() < 15)
+	}
+
+	static isThirdWeekOfMonth(date: Date): boolean {
+		return (14 < date.getDate() && date.getDate() < 22)
+	}
+
+	static isFourthWeekOfMonth(date: Date): boolean {
+		return (21 < date.getDate() && date.getDate() < 29)
+	}
+
+	static isLastWeekOfMonth(date: Date): boolean {
+		return (this.daysInMonth(date) - 7 <= date.getDate())
+	}
+
+	static daysInMonth(date: Date): number {
+		return new Date(date.getFullYear(), date.getMonth(), 0).getDate();
+	}
+
+	static EVERY_DAY: Schedule = (today: Date) => (true)
+	static EVERY_WEEKDAY: Schedule = (today: Date) => (this.isWeekday(today))
+	static EVERY_WEEKEND_DAY: Schedule = (today: Date) => (! this.isWeekday(today))
+
+	static EVERY_MONDAY: Schedule = (today: Date) => (this.isMonday(today))
+	static EVERY_TUESDAY: Schedule = (today: Date) => (this.isTuesday(today))
+	static EVERY_WEDNESDAY: Schedule = (today: Date) => (this.isWednesday(today))
+	static EVERY_THURSDAY: Schedule = (today: Date) => (this.isThursday(today))
+	static EVERY_FRIDAY: Schedule = (today: Date) => (this.isFriday(today))
+	static EVERY_SATURDAY: Schedule = (today: Date) => (this.isSaturday(today))
+	static EVERY_SUNDAY: Schedule = (today: Date) => (this.isSunday(today))
+
+	static FIRST_OF_THE_MONTH: Schedule = (today: Date) => (today.getDate() == 1)
+	static FIRST_MONDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isMonday(today) && this.isFirstWeekOfMonth(today))
+	static FIRST_TUESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isTuesday(today) && this.isFirstWeekOfMonth(today))
+	static FIRST_WEDNESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isWednesday(today) && this.isFirstWeekOfMonth(today))
+	static FIRST_THURSDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isThursday(today) && this.isFirstWeekOfMonth(today))
+	static FIRST_FRIDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isFriday(today) && this.isFirstWeekOfMonth(today))
+	static FIRST_SATURDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSaturday(today) && this.isFirstWeekOfMonth(today))
+	static FIRST_SUNDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSunday(today) && this.isFirstWeekOfMonth(today))
+	
+	static SECOND_MONDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isMonday(today) && this.isSecondWeekOfMonth(today))
+	static SECOND_TUESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isTuesday(today) && this.isSecondWeekOfMonth(today))
+	static SECOND_WEDNESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isWednesday(today) && this.isSecondWeekOfMonth(today))
+	static SECOND_THURSDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isThursday(today) && this.isSecondWeekOfMonth(today))
+	static SECOND_FRIDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isFriday(today) && this.isSecondWeekOfMonth(today))
+	static SECOND_SATURDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSaturday(today) && this.isSecondWeekOfMonth(today))
+	static SECOND_SUNDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSunday(today) && this.isSecondWeekOfMonth(today))
+
+	static THIRD_MONDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isMonday(today) && this.isThirdWeekOfMonth(today))
+	static THIRD_TUESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isTuesday(today) && this.isThirdWeekOfMonth(today))
+	static THIRD_WEDNESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isWednesday(today) && this.isThirdWeekOfMonth(today))
+	static THIRD_THURSDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isThursday(today) && this.isThirdWeekOfMonth(today))
+	static THIRD_FRIDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isFriday(today) && this.isThirdWeekOfMonth(today))
+	static THIRD_SATURDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSaturday(today) && this.isThirdWeekOfMonth(today))
+	static THIRD_SUNDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSunday(today) && this.isThirdWeekOfMonth(today))
+
+	static FOURTH_MONDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isMonday(today) && this.isFourthWeekOfMonth(today))
+	static FOURTH_TUESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isTuesday(today) && this.isFourthWeekOfMonth(today))
+	static FOURTH_WEDNESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isWednesday(today) && this.isFourthWeekOfMonth(today))
+	static FOURTH_THURSDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isThursday(today) && this.isFourthWeekOfMonth(today))
+	static FOURTH_FRIDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isFriday(today) && this.isFourthWeekOfMonth(today))
+	static FOURTH_SATURDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSaturday(today) && this.isFourthWeekOfMonth(today))
+	static FOURTH_SUNDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSunday(today) && this.isFourthWeekOfMonth(today))
+
+	static LAST_MONDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isMonday(today) && this.isLastWeekOfMonth(today))
+	static LAST_TUESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isTuesday(today) && this.isLastWeekOfMonth(today))
+	static LAST_WEDNESDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isWednesday(today) && this.isLastWeekOfMonth(today))
+	static LAST_THURSDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isThursday(today) && this.isLastWeekOfMonth(today))
+	static LAST_FRIDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isFriday(today) && this.isLastWeekOfMonth(today))
+	static LAST_SATURDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSaturday(today) && this.isLastWeekOfMonth(today))
+	static LAST_SUNDAY_OF_THE_MONTH: Schedule = (today: Date) => (this.isSunday(today) && this.isLastWeekOfMonth(today))
 }
