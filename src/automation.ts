@@ -157,13 +157,14 @@ export class LinearAutomation {
 
 		let team = (await this.fetchTeams())[this.teamName]
 		let state = (await this.fetchStates())[options.setTo]
+		let dueDate = (issue.dueDate) ? issue.dueDate.toUTCString() : undefined
 
 		return this.linear.issueCreate({
 			title: issue.title,
 			description: issue.description,
 			stateId: state,
 			teamId: team,
-			dueDate: issue.dueDate?.toUTCString(),
+			dueDate: dueDate,
 			// TODO: add labels, projects, assignees
 		})
 	}
