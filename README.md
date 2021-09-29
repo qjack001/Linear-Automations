@@ -6,13 +6,24 @@ Simple workflows for automating [Linear](https://linear.app/) workspaces.
 
 ### Automation
 
-Currently, there is a single automation option: `moveIssues({from: string, to: string, after: Duration})`. This automation moves issues from one status to another after they sit un-updated for a certain period of time.
+Currently, there are two automation options: 
 
-For example, the following moves *In Progress* items back to *Todo* if they have not been updated in the last two weeks:
+1. **`moveIssues`**
+2. **`recurringIssue`**
+
+
+The _moveIssues_ function (`moveIssues({from: string, to: string, after: Duration})`) updates the status of issues that have gone stale. If an issue in the given `from` status hasn't had any updates in the amount of time given in `after`, it is moved to the `to` status. For example, the following moves *In Progress* items back to *Todo* if they have not been updated in the last two weeks:
 
 ```typescript
 let auto = new LinearAutomation(env.API_KEY)
 auto.moveIssues({ from: 'In Progress', to: 'Todo', after: Time.ofWeeks(2) })
+```
+
+The _recurringIssue_ function (`recurringIssue(issue: string, options: { to: string, schedule: Schedule })`) creates an issue on a set cadence. The issue title is set with `issue`, and it is given the status provided in `to`. The issue will be created on the `schedule` provided — which has granularity in days. The issue will be re-opened instead of re-created if one already exists. For example, the following creates (or reopens an existing) issue to update dependencies on the first Monday of the month:
+
+```typescript
+let auto = new LinearAutomation(env.API_KEY)
+auto.recurringIssue('Update dependencies', { to: 'Todo', schedule: Time.FIRST_MONDAY_OF_THE_MONTH })
 ```
 
 ### Local development
